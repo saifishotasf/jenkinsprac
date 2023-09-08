@@ -1,0 +1,42 @@
+pipeline{
+    agent any
+    tools {
+        maven 'Maven'
+    }
+    stages{
+        stage("test"){
+            steps{
+                sh "mvn --version"
+                echo  "this is step one"
+            }
+        }
+         stage("build"){
+            steps{
+                
+                echo 'helloboss'
+            }
+        }
+         stage("deploy on test"){
+            steps{
+
+                echo 'sleep 10'
+            }
+        }
+         stage("deploy on prod"){
+            steps{
+                sh 'pwd'
+            }
+        }
+    }
+            post{
+                always{
+                    echo "========always========"
+                }
+                success{
+                    echo "========A executed successfully========"
+                }
+                failure{
+                    echo "========A execution failed========"
+                }
+            }
+        }
